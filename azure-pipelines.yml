@@ -25,6 +25,15 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '8d7433f5-d96e-4469-807a-ffc6b38dc164'
+    definition: '8'
+    buildVersionToDownload: 'latest'
+    itemPattern: '**.app-debug.apk'
+    targetPath: '$(Pipeline.Workspace)'
+
 - script: |
     npm install -g appcenter-cli
     appcenter login --token feebdff44f99eecaa582e06442080b2621793f1d
@@ -32,7 +41,7 @@ steps:
 
 - task: AppCenterTest@1
   inputs:
-    artifactsDirectory: '$(Build.BinariesDirectory)/debug-app.apk'
+    artifactsDirectory: '$(Pipeline.Workspace)/debug-app.apk'
     frameworkOption: 'appium'
     appiumBuildDirectory: '$(Agent.HomeDirectory)'
     credentialsOption: 'serviceEndpoint'
