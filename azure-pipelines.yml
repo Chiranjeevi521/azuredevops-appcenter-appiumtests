@@ -20,3 +20,20 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
+- task: AppCenterTest@1
+  inputs:
+    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+    frameworkOption: 'appium'
+    appiumBuildDirectory: '$(Agent.BuildDirectory)'
+    credentialsOption: 'serviceEndpoint'
+    localeOption: 'en_US'
+
+- task: AppCenterTest@1
+  inputs:
+    appFile: '$(Build.StagingDirectory)'
+    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+    frameworkOption: 'appium'
+    appiumBuildDirectory: '$(Agent.BuildDirectory)'
+    credentialsOption: 'serviceEndpoint'
+    localeOption: 'en_US'
