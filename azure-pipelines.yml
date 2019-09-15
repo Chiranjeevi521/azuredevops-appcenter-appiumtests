@@ -32,8 +32,8 @@ steps:
 
 - task: AppCenterTest@1
   inputs:
-    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/debug-app.apk'
+    artifactsDirectory: '$(Build.BinariesDirectory)/debug-app.apk'
     frameworkOption: 'appium'
-    appiumBuildDirectory: '$(Agent.BuildDirectory)'
+    appiumBuildDirectory: '$(Agent.HomeDirectory)'
     credentialsOption: 'serviceEndpoint'
     localeOption: 'en_US'
