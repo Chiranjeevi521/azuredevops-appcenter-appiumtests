@@ -21,9 +21,14 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+- script: |
+    npm install -g appcenter-cli
+    appcenter login --token feebdff44f99eecaa582e06442080b2621793f1d
+  displayName: 'Login into app-center'
+
 - task: AppCenterTest@1
   inputs:
-    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/debug-app.apk'
     frameworkOption: 'appium'
     appiumBuildDirectory: '$(Agent.BuildDirectory)'
     credentialsOption: 'serviceEndpoint'
