@@ -37,8 +37,9 @@ steps:
 - script: |
     npm install -g appcenter-cli
     appcenter login --token feebdff44f99eecaa582e06442080b2621793f1d
-    appcenter test run appium --app "HelloWorld" --devices 36608302 --app-path "$(Pipeline.Workspace)/debug-app.apk"  --test-series "master" --locale "en_US" --build-dir "$(Agent.BuildDirectory)"
   displayName: 'Login into app-center and run tests'
+
+# appcenter test run appium --app "HelloWorld" --devices 36608302 --app-path "$(Pipeline.Workspace)/debug-app.apk"  --test-series "master" --locale "en_US" --build-dir "$(Agent.BuildDirectory)"
 
 - task: AppCenterTest@1
   inputs:
