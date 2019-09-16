@@ -31,8 +31,9 @@ steps:
     project: '8d7433f5-d96e-4469-807a-ffc6b38dc164'
     definition: '8'
     buildVersionToDownload: 'latest'
-    itemPattern: '*.app-debug.apk'
-    targetPath: '$(Pipeline.Workspace)'
+    artifactName: 'apps'
+    itemPattern: '**/*.app-debug.apk'
+    targetPath: '$(Build.SourcesDirectory)/bin'
 
 - script: |
     npm install -g appcenter-cli
@@ -43,7 +44,7 @@ steps:
 
 - task: AppCenterTest@1
   inputs:
-    appFile: '*.debug-app.apk'
+    appFile: '**/*.debug-app.apk'
     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
     frameworkOption: 'appium'
     appiumBuildDirectory: 'uitest/target/upload/'
