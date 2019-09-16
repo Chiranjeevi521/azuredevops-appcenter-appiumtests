@@ -41,6 +41,20 @@ steps:
     ls
   displayName: 'Login into app-center'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '*.png'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+  displayName: 'Copying images as artifacts'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'images'
+    artifactType: 'container'
+
 # appcenter test run appium --app "HelloWorld" --devices 36608302 --app-path "$(Pipeline.Workspace)/debug-app.apk"  --test-series "master" --locale "en_US" --build-dir "$(Agent.BuildDirectory)"
 
 - task: AppCenterTest@1
@@ -48,5 +62,5 @@ steps:
     appFile: '**/*app-debug.apk'
     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
     frameworkOption: 'appium'
-    appiumBuildDirectory: '$(Build.SourcesDirectory)/target'
+    appiumBuildDirectory: '$(Build.SourcesDirectory)'
     runTests: false
