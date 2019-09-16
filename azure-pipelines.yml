@@ -44,7 +44,7 @@ steps:
 
 - task: AppCenterTest@1
   inputs:
-    appFile: '**/*.debug-app.apk'
+    appFile: '**/*.app-debug.apk'
     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
     frameworkOption: 'appium'
     appiumBuildDirectory: 'uitest/target/upload/'
