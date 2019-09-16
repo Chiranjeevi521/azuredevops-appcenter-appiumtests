@@ -47,5 +47,5 @@ steps:
     appFile: '**/*app-debug.apk'
     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
     frameworkOption: 'appium'
-    appiumBuildDirectory: '$(Build.SourcesDirectory)'
+    appiumBuildDirectory: '$(Build.SourcesDirectory)/target'
     runTests: false
