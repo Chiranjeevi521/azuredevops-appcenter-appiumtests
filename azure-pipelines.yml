@@ -43,7 +43,7 @@ steps:
 
 - task: AppCenterTest@1
   inputs:
-    appFile: '$(Pipeline.Workspace)/debug-app.apk'
+    appFile: '$(Pipeline.Workspace)/**.debug-app.apk'
     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
     frameworkOption: 'appium'
     appiumBuildDirectory: 'uitest/target/upload/'
