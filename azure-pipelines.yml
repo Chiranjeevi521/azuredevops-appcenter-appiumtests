@@ -39,7 +39,7 @@ steps:
     npm install -g appcenter-cli
     appcenter login --token feebdff44f99eecaa582e06442080b2621793f1d
     mvn -DskipTests -P prepare-for-upload package
-    appcenter test run appium --app "chiranjeevi521/CordovaAppCITest" --devices "chiranjeevi521/testdevicesgooglepixel" --app-path **/*app-debug.apk  --test-series "master" --locale "en_US" --build-dir $(Build.SourcesDirectory)
+    appcenter test run appium --app "chiranjeevi521/CordovaAppCITest" --devices "chiranjeevi521/testdevicesgooglepixel" --app-path **/*app-debug.apk  --test-series "master" --locale "en_US" --build-dir $(Build.SourcesDirectory)/target/classes
   displayName: 'Login into app-center'
 
 - task: CopyFiles@2
