@@ -1,6 +1,7 @@
 package com.microsoft.appcenter.appium;
 
 import org.junit.*;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -11,16 +12,27 @@ import java.net.URL;
 
 import static org.junit.Assert.*;
 
+import com.microsoft.appcenter.appium.Factory;
+
+import io.appium.java_client.MobileElement;
+
+import com.microsoft.appcenter.appium.EnhancedAndroidDriver;
+import org.junit.rules.TestWatcher;
+import org.junit.Rule;
+
 public class EnhancedAndroidDriverTest {
 
     public static final byte[] PNG = OutputType.BYTES.convertFromBase64Png("amZsanNmbGtkc2pmbGtzZGpmbGtkc2ZqbGtkc2ZqZGxza2ZqZHNsa2Zq");
     private static AppiumMock appiumMock;
     private MemoryEventReporter reporter = new MemoryEventReporter();
 
+//    @Rule
+//    public Watcher watcher = new Watcher(reporter);
+    
     @Rule
-    public Watcher watcher = new Watcher(reporter);
+    public TestWatcher watcher = Factory.createWatcher();
 
-    private EnhancedAndroidDriver driver;
+    private static EnhancedAndroidDriver<MobileElement> driver;
 
     @BeforeClass
     public static void mockAppium() throws IOException {
@@ -35,12 +47,13 @@ public class EnhancedAndroidDriverTest {
 
     @Before
     public void setUp() throws MalformedURLException {
-        driver = new EnhancedAndroidDriver(new URL("http://localhost:8001"), new DesiredCapabilities(), reporter);
+        driver = Factory.createAndroidDriver(new URL("http://localhost:8001"), new DesiredCapabilities());
     }
 
     @After
-    public void reset() {
-        reporter.clear();
+    public void TearDown(){
+        driver.label("Stopping App");
+        driver.quit();
     }
 
     @Test

@@ -8,9 +8,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
+import com.microsoft.appcenter.appium.Factory;
+import com.microsoft.appcenter.appium.EnhancedAndroidDriver;
+import org.junit.rules.TestWatcher;
+import org.junit.Rule;
+
 public class AppiumMock {
 
     private HttpServer server;
+    
+    @Rule
+    public TestWatcher watcher = Factory.createWatcher();
 
     public void start() throws IOException {
         server = HttpServer.create(new InetSocketAddress(8001), 0);
