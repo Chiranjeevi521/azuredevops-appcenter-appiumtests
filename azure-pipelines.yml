@@ -44,7 +44,7 @@ steps:
     mvn -DskipTests -P prepare-for-upload package
     appcenter test run appium --app "chiranjeevi521/CordovaAppCITest" --devices "chiranjeevi521/testdevicesgooglepixel" --app-path $(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk --test-series "master" --locale "en_US" --build-dir $(Build.SourcesDirectory)/target/upload
   displayName: 'Prepare for upoload and execute tests on AppCenter'
-
+  
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
@@ -58,11 +58,3 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'images'
     artifactType: 'container'
-
-- task: AppCenterTest@1
-  inputs:
-    appFile: '**/*app-debug.apk'
-    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
-    frameworkOption: 'appium'
-    appiumBuildDirectory: '$(Build.SourcesDirectory)'
-    runTests: false
