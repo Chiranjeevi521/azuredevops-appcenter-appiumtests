@@ -73,7 +73,7 @@
                         <goal>copy-dependencies</goal>
                     </goals>
                     <configuration>
-                        <outputDirectory>${project.build.directory}/dependency-jars/</outputDirectory>
+                        <outputDirectory>dependency-jars/</outputDirectory>
                     </configuration>
                     </execution>
                 </executions>
