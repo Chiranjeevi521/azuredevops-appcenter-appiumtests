@@ -12,3 +12,6 @@ buildNumber.properties
 # Intellij
 *.iml
 .idea/workspace.xml
+/.classpath
+/.project
+/package-lock.json
