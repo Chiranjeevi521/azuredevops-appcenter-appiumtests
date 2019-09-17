@@ -132,45 +132,25 @@
                     <excludes>
                         <exclude>**/javassist/</exclude>
                     </excludes>
+                    <outputDirectory>test-classes</outputDirectory>
                 </configuration>
+		        <executions>
+		          <execution>
+		            <goals>
+		              <goal>test-jar</goal>
+		            </goals>
+		          </execution>
+		        </executions>
             </plugin>
             <plugin>
                 <groupId>net.orfjackal.retrolambda</groupId>
                 <artifactId>retrolambda-maven-plugin</artifactId>
                 <version>2.1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process-main</goal>
-                            <goal>process-test</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.5.0</version>
-                <executions>
-                    <execution>
-                        <id>PerformGenericsRewrite</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>java</executable>
-                            <workingDirectory>${project.build.outputDirectory}</workingDirectory>
-                            <arguments>
-                                <argument>-cp</argument>
-                                <classpath />
-                                <argument>com.microsoft.appcenter.appium.javassist.GenericsRewrite</argument>
-                                <argument>com.microsoft.appcenter.appium.EnhancedAndroidDriver</argument>
-                                <argument>com.microsoft.appcenter.appium.EnhancedIOSDriver</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
