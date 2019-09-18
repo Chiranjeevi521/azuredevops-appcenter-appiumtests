@@ -34,6 +34,18 @@ steps:
     artifactName: 'apps'
     itemPattern: '**/*app-debug.apk'
     targetPath: '$(Build.SourcesDirectory)/bin'
+  displayName: 'Downloading APK file for testing'
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '8d7433f5-d96e-4469-807a-ffc6b38dc164'
+    definition: '8'
+    buildVersionToDownload: 'latest'
+    artifactName: 'apps'
+    itemPattern: '**/*HelloWorld.ipa'
+    targetPath: '$(Build.SourcesDirectory)/bin'
+  displayName: 'Downloading APK file for testing'
 
 - script: |
     npm install -g appcenter-cli
@@ -56,6 +68,19 @@ steps:
     serverEndpoint: 'AppCenterServiceConnection'
     appSlug: 'chiranjeevi521/CordovaAppCITest'
     devices: 'chiranjeevi521/AndroidTestDevices'
+    localeOption: 'en_US'
+  displayName: 'Running tests from app center task'
+
+- task: AppCenterTest@1
+  inputs:
+    appFile: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
+    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+    frameworkOption: 'appium'
+    appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
+    credentialsOption: 'serviceEndpoint'
+    serverEndpoint: 'AppCenterServiceConnection'
+    appSlug: 'chiranjeevi521/CordovaIOSAppCITest'
+    devices: 'chiranjeevi521/IOSTestDevices'
     localeOption: 'en_US'
   displayName: 'Running tests from app center task'
 
