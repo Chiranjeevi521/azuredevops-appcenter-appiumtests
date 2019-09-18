@@ -34,7 +34,7 @@ steps:
     artifactName: 'apps'
     itemPattern: '**/*app-debug.apk'
     targetPath: '$(Build.SourcesDirectory)/bin'
-  displayName: 'Downloading APK file for testing'
+  displayName: 'Downloading Android APK file for testing'
 
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -45,7 +45,7 @@ steps:
     artifactName: 'apps'
     itemPattern: '**/*HelloWorld.ipa'
     targetPath: '$(Build.SourcesDirectory)/bin'
-  displayName: 'Downloading APK file for testing'
+  displayName: 'Downloading IOS IPA file for testing'
 
 - script: |
     npm install -g appcenter-cli
@@ -69,7 +69,7 @@ steps:
     appSlug: 'chiranjeevi521/CordovaAppCITest'
     devices: 'chiranjeevi521/AndroidTestDevices'
     localeOption: 'en_US'
-  displayName: 'Running tests from app center task'
+  displayName: 'Executing Android Hardware Specific Tests'
 
 - task: AppCenterTest@1
   inputs:
@@ -82,7 +82,7 @@ steps:
     appSlug: 'chiranjeevi521/CordovaIOSAppCITest'
     devices: 'chiranjeevi521/IOSTestDevices'
     localeOption: 'en_US'
-  displayName: 'Running tests from app center task'
+  displayName: 'Executing IOS Hardware Specific Tests'
 
 - task: CopyFiles@2
   inputs:
