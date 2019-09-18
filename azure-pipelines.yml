@@ -42,8 +42,9 @@ steps:
 
 - script: |
     mvn -DskipTests -P prepare-for-upload package
-    appcenter test run appium --app "chiranjeevi521/CordovaAppCITest" --devices "chiranjeevi521/testdevicesgooglepixel" --app-path $(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk --test-series "master" --locale "en_US" --build-dir $(Build.SourcesDirectory)/target/upload
-  displayName: 'Prepare for upoload and execute tests on AppCenter'
+  displayName: 'Prepare tests for upoload'
+
+# appcenter test run appium --app "chiranjeevi521/CordovaAppCITest" --devices "chiranjeevi521/testdevicesgooglepixel" --app-path $(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk --test-series "master" --locale "en_US" --build-dir $(Build.SourcesDirectory)/target/upload
 
 - task: AppCenterTest@1
   inputs:
