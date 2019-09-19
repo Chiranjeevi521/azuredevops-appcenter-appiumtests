@@ -71,6 +71,15 @@ steps:
     localeOption: 'en_US'
   displayName: 'Executing Android Hardware Specific Tests'
 
+- task: IpaResign@1
+  inputs:
+    ipaPath: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
+    signFileP12Path: 'Certificates.p12'
+    signFileP12Password: 'secret'
+    provFileProfilePath: 'xcode10.mobileprovision'
+    installFastlane: false
+
+
 - task: AppCenterTest@1
   inputs:
     appFile: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
@@ -83,6 +92,9 @@ steps:
     devices: 'chiranjeevi521/IOSTestDevices'
     localeOption: 'en_US'
   displayName: 'Executing IOS Hardware Specific Tests'
+
+
+
 
 - task: CopyFiles@2
   inputs:
