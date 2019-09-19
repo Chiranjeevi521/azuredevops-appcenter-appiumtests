@@ -29,7 +29,8 @@ steps:
 
 - script: |
     sudo gem install fastlane
-  displayName: 'Folder Structure'
+    fastlane run opt_out_usage
+  displayName: 'Installing fastlane and performing opt_out_usage'
 
 - task: Maven@3
   inputs:
@@ -70,7 +71,7 @@ steps:
     signFileP12Path: '$(P12Certificate.secureFilePath)'
     signFileP12Password: 'secret'
     provFileProfilePath: '$(ProvisionCertificate.secureFilePath)'
-    installFastlane: true
+    installFastlane: False
 
 - script: |
     npm install -g appcenter-cli
