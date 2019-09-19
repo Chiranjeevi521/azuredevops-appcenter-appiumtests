@@ -43,16 +43,16 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-# - task: DownloadPipelineArtifact@2
-#   inputs:
-#     buildType: 'specific'
-#     project: '8d7433f5-d96e-4469-807a-ffc6b38dc164'
-#     definition: '8'
-#     buildVersionToDownload: 'latest'
-#     artifactName: 'apps'
-#     itemPattern: '**/*app-debug.apk'
-#     targetPath: '$(Build.SourcesDirectory)/bin'
-#   displayName: 'Downloading Android APK file for testing'
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '8d7433f5-d96e-4469-807a-ffc6b38dc164'
+    definition: '8'
+    buildVersionToDownload: 'latest'
+    artifactName: 'apps'
+    itemPattern: '**/*app-debug.apk'
+    targetPath: '$(Build.SourcesDirectory)/bin'
+  displayName: 'Downloading Android APK file for testing'
 
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -84,34 +84,32 @@ steps:
 
 # appcenter test run appium --app "chiranjeevi521/CordovaAppCITest" --devices "chiranjeevi521/AndroidTestDevices" --app-path $(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk --test-series "master" --locale "en_US" --build-dir $(Build.SourcesDirectory)/target/upload
 
-# - task: AppCenterTest@1
-#   inputs:
-#     appFile: '$(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk'
-#     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
-#     frameworkOption: 'appium'
-#     appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
-#     credentialsOption: 'serviceEndpoint'
-#     serverEndpoint: 'AppCenterServiceConnection'
-#     appSlug: 'chiranjeevi521/CordovaAppCITest'
-#     devices: 'chiranjeevi521/AndroidTestDevices'
-#     localeOption: 'en_US'
-#   displayName: 'Executing Android Hardware Specific Tests'
-
-
 - task: AppCenterTest@1
   inputs:
-    appFile: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
+    appFile: '$(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk'
     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
     frameworkOption: 'appium'
     appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
     credentialsOption: 'serviceEndpoint'
     serverEndpoint: 'AppCenterServiceConnection'
-    appSlug: 'chiranjeevi521/CordovaIOSAppCITest'
-    devices: 'chiranjeevi521/IOSTestDevices'
+    appSlug: 'chiranjeevi521/CordovaAppCITest'
+    devices: 'chiranjeevi521/AndroidTestDevices'
     localeOption: 'en_US'
-  displayName: 'Executing IOS Hardware Specific Tests'
+  displayName: 'Executing Android Hardware Specific Tests'
 
 
+# - task: AppCenterTest@1
+#   inputs:
+#     appFile: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
+#     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+#     frameworkOption: 'appium'
+#     appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
+#     credentialsOption: 'serviceEndpoint'
+#     serverEndpoint: 'AppCenterServiceConnection'
+#     appSlug: 'chiranjeevi521/CordovaIOSAppCITest'
+#     devices: 'chiranjeevi521/IOSTestDevices'
+#     localeOption: 'en_US'
+#   displayName: 'Executing IOS Hardware Specific Tests'
 
 
 - task: CopyFiles@2
