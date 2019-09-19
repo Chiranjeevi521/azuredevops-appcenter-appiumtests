@@ -14,6 +14,20 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+
+- task: DownloadSecureFile@1
+  name: P12Certificate
+  displayName: 'Download P12 Secure Certificate'
+  inputs:
+    secureFile: 'Certificates.p12'
+
+- task: DownloadSecureFile@1
+  name: ProvisionCertificate
+  displayName: 'Download Mobile Provision Certificate'
+  inputs:
+    secureFile: 'xcode10.mobileprovision'
+
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
