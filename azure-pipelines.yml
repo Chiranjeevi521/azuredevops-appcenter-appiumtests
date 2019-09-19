@@ -28,7 +28,7 @@ steps:
     secureFile: 'xcode10.mobileprovision'
 
 - script: |
-    ls
+    sudo gem install fastlane
   displayName: 'Folder Structure'
 
 - task: Maven@3
@@ -70,7 +70,7 @@ steps:
     signFileP12Path: '$(P12Certificate.secureFilePath)'
     signFileP12Password: 'secret'
     provFileProfilePath: '$(ProvisionCertificate.secureFilePath)'
-    installFastlane: false
+    installFastlane: true
 
 - script: |
     npm install -g appcenter-cli
