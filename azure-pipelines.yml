@@ -67,9 +67,9 @@ steps:
 - task: IpaResign@1
   inputs:
     ipaPath: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
-    signFileP12Path: '$(P12Certificate.Certificates.p12)'
+    signFileP12Path: '$(Certificates.p12)'
     signFileP12Password: 'secret'
-    provFileProfilePath: '$(ProvisionCertificate.xcode10.mobileprovision)'
+    provFileProfilePath: '$(xcode10.mobileprovision)'
     installFastlane: false
 
 - script: |
