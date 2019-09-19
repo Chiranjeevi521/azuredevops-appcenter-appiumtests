@@ -58,18 +58,18 @@ steps:
 
 # appcenter test run appium --app "chiranjeevi521/CordovaAppCITest" --devices "chiranjeevi521/AndroidTestDevices" --app-path $(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk --test-series "master" --locale "en_US" --build-dir $(Build.SourcesDirectory)/target/upload
 
-- task: AppCenterTest@1
-  inputs:
-    appFile: '$(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk'
-    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
-    frameworkOption: 'appium'
-    appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
-    credentialsOption: 'serviceEndpoint'
-    serverEndpoint: 'AppCenterServiceConnection'
-    appSlug: 'chiranjeevi521/CordovaAppCITest'
-    devices: 'chiranjeevi521/AndroidTestDevices'
-    localeOption: 'en_US'
-  displayName: 'Executing Android Hardware Specific Tests'
+# - task: AppCenterTest@1
+#   inputs:
+#     appFile: '$(Build.SourcesDirectory)/bin/s/platforms/android/app/build/outputs/apk/debug/app-debug.apk'
+#     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+#     frameworkOption: 'appium'
+#     appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
+#     credentialsOption: 'serviceEndpoint'
+#     serverEndpoint: 'AppCenterServiceConnection'
+#     appSlug: 'chiranjeevi521/CordovaAppCITest'
+#     devices: 'chiranjeevi521/AndroidTestDevices'
+#     localeOption: 'en_US'
+#   displayName: 'Executing Android Hardware Specific Tests'
 
 - task: IpaResign@1
   inputs:
