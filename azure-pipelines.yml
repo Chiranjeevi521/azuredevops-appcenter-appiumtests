@@ -21,12 +21,16 @@ steps:
   inputs:
     secureFile: 'Certificates.p12'
 
+
 - task: DownloadSecureFile@1
   name: ProvisionCertificate
   displayName: 'Download Mobile Provision Certificate'
   inputs:
     secureFile: 'xcode10.mobileprovision'
 
+- script: |
+    ls
+  displayName: 'Folder Structure'
 
 - task: Maven@3
   inputs:
@@ -39,16 +43,16 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-- task: DownloadPipelineArtifact@2
-  inputs:
-    buildType: 'specific'
-    project: '8d7433f5-d96e-4469-807a-ffc6b38dc164'
-    definition: '8'
-    buildVersionToDownload: 'latest'
-    artifactName: 'apps'
-    itemPattern: '**/*app-debug.apk'
-    targetPath: '$(Build.SourcesDirectory)/bin'
-  displayName: 'Downloading Android APK file for testing'
+# - task: DownloadPipelineArtifact@2
+#   inputs:
+#     buildType: 'specific'
+#     project: '8d7433f5-d96e-4469-807a-ffc6b38dc164'
+#     definition: '8'
+#     buildVersionToDownload: 'latest'
+#     artifactName: 'apps'
+#     itemPattern: '**/*app-debug.apk'
+#     targetPath: '$(Build.SourcesDirectory)/bin'
+#   displayName: 'Downloading Android APK file for testing'
 
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -60,6 +64,14 @@ steps:
     itemPattern: '**/*HelloWorld.ipa'
     targetPath: '$(Build.SourcesDirectory)/bin'
   displayName: 'Downloading IOS IPA file for testing'
+
+- task: IpaResign@1
+  inputs:
+    ipaPath: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
+    signFileP12Path: 'Certificates.p12'
+    signFileP12Password: 'secret'
+    provFileProfilePath: 'xcode10.mobileprovision'
+    installFastlane: false
 
 - script: |
     npm install -g appcenter-cli
@@ -84,14 +96,6 @@ steps:
 #     devices: 'chiranjeevi521/AndroidTestDevices'
 #     localeOption: 'en_US'
 #   displayName: 'Executing Android Hardware Specific Tests'
-
-- task: IpaResign@1
-  inputs:
-    ipaPath: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
-    signFileP12Path: 'Certificates.p12'
-    signFileP12Password: 'secret'
-    provFileProfilePath: 'xcode10.mobileprovision'
-    installFastlane: false
 
 
 - task: AppCenterTest@1
