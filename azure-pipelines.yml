@@ -27,10 +27,10 @@ steps:
   inputs:
     secureFile: 'xcode10.mobileprovision'
 
-- script: |
-    sudo gem install fastlane
-    fastlane run opt_out_usage
-  displayName: 'Installing fastlane and performing opt_out_usage'
+# - script: |
+#     sudo gem install fastlane
+#     fastlane run opt_out_usage
+#   displayName: 'Installing fastlane and performing opt_out_usage'
 
 - task: Maven@3
   inputs:
@@ -65,13 +65,13 @@ steps:
     targetPath: '$(Build.SourcesDirectory)/bin'
   displayName: 'Downloading IOS IPA file for testing'
 
-- task: IpaResign@1
-  inputs:
-    ipaPath: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
-    signFileP12Path: '$(P12Certificate.secureFilePath)'
-    signFileP12Password: 'secret'
-    provFileProfilePath: '$(ProvisionCertificate.secureFilePath)'
-    installFastlane: False
+# - task: IpaResign@1
+#   inputs:
+#     ipaPath: '$(Build.SourcesDirectory)/bin/s/HelloWorld.ipa'
+#     signFileP12Path: '$(P12Certificate.secureFilePath)'
+#     signFileP12Password: 'secret'
+#     provFileProfilePath: '$(ProvisionCertificate.secureFilePath)'
+#     installFastlane: False
 
 - script: |
     npm install -g appcenter-cli
