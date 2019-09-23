@@ -92,8 +92,8 @@ steps:
     appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
     credentialsOption: 'serviceEndpoint'
     serverEndpoint: 'AppCenterServiceConnection'
-    appSlug: 'kartik mudigonda/CordovaAppCITest'
-    devices: 'kartik mudigonda/AndroidTestDevices'
+    appSlug: 'kartik.mudigonda-outlook.com/CordovaAndroidAppCITest'
+    devices: 'kartik.mudigonda-outlook.com/AndroidTestDevices'
     localeOption: 'en_US'
   displayName: 'Executing Android Hardware Specific Tests'
 
@@ -106,8 +106,8 @@ steps:
 #     appiumBuildDirectory: '$(Build.SourcesDirectory)/target/upload'
 #     credentialsOption: 'serviceEndpoint'
 #     serverEndpoint: 'AppCenterServiceConnection'
-#     appSlug: 'kartik mudigonda/CordovaIOSAppCITest'
-#     devices: 'kartik mudigonda/IOSTestDevices'
+#     appSlug: 'kartik.mudigonda-outlook.com/CordovaIOSAppCITest'
+#     devices: 'kartik.mudigonda-outlook.com/IOSTestDevices'
 #     localeOption: 'en_US'
 #   displayName: 'Executing IOS Hardware Specific Tests'
 
