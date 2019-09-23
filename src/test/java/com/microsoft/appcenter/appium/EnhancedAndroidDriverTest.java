@@ -62,7 +62,7 @@ public class EnhancedAndroidDriverTest {
 
     @Test
     public void testGetScreenshotAs() throws Exception {
-        driver.getScreenshotAs(OutputType.BASE64);
+        driver.getScreenshotAs(OutputType.FILE);
 
     }
 
@@ -77,9 +77,8 @@ public class EnhancedAndroidDriverTest {
     
     
   @Test	
-  public void runAppBackground() throws InterruptedException {
+  public void closeAndReopenTest() throws InterruptedException {
   	
-	  driver.runAppInBackground(fiveSeconds);
 	  driver.closeApp();
 	  driver.launchApp();
   	}
@@ -95,8 +94,10 @@ public class EnhancedAndroidDriverTest {
   @Test 	
   public void orientationTest() throws InterruptedException {
   	driver.rotate(ScreenOrientation.LANDSCAPE);
+  	driver.getScreenshotAs(OutputType.FILE);
   	Thread.sleep(5000);
   	driver.rotate(ScreenOrientation.PORTRAIT);
+  	driver.getScreenshotAs(OutputType.FILE);
   	Thread.sleep(10000);
   	}
 
