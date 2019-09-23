@@ -71,7 +71,7 @@ public class EnhancedAndroidDriverTest {
     public void screenLockTest() throws InterruptedException {
     	
     	driver.lockDevice();
-    	System.out.println("Device Lock Status : " + driver.isDeviceLocked());
+    	Thread.sleep(5000);
     	driver.unlockDevice();
     }
     
