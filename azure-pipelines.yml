@@ -75,7 +75,7 @@ steps:
 
 - script: |
     npm install -g appcenter-cli
-    appcenter login --token feebdff44f99eecaa582e06442080b2621793f1d
+    appcenter login --token afd25ccc9debddb79dadc3cb48cbc6b920ae9c75
   displayName: 'Login into app-center'
 
 - script: |
