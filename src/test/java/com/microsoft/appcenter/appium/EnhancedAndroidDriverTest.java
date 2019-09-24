@@ -72,7 +72,9 @@ public class EnhancedAndroidDriverTest {
     	
     	driver.lockDevice();
     	Thread.sleep(5000);
+    	driver.getScreenshotAs(OutputType.FILE);
     	driver.unlockDevice();
+    	driver.getScreenshotAs(OutputType.FILE);
     }
     
     
@@ -80,7 +82,9 @@ public class EnhancedAndroidDriverTest {
   public void closeAndReopenTest() throws InterruptedException {
   	
 	  driver.closeApp();
+	  driver.getScreenshotAs(OutputType.FILE);
 	  driver.launchApp();
+	  driver.getScreenshotAs(OutputType.FILE);
   	}
     
     
@@ -88,6 +92,7 @@ public class EnhancedAndroidDriverTest {
   public void resetApp() throws InterruptedException {
   	
 	  driver.resetApp();
+	  driver.getScreenshotAs(OutputType.FILE);
   	}
     
     
